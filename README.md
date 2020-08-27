@@ -1,19 +1,28 @@
 ## users テーブル
 
-| Column   | Type    | Options     |
-| -------- | ------  | ----------- |
-| nickname | string  | null: false |
-| email    | string  | null: false |
-| password | string  | null: false |
-| kanji    | string  | null: false |
-| kana     | string  | null: false |
-| birthday | integer | null: false |
+| Column      | Type    | Options     |
+| ------------| ------  | ----------- |
+| nickname    | string  | null: false |
+| email       | string  | null: false |
+| password    | string  | null: false |
+| family-kanji| string  | null: false |
+| first-kanji | string  | null: false |
+| family-kana | string  | null: false |
+| first-kana  | string  | null: false |
+| year        | integer | null: false |
+| month       | integer | null: false |
+| day         | integer | null: false |
+
 
 ### Association
 
 - has_one :seller
-- has_one :buyer
 - has_many :comments
+- has_many :items, through: seller
+- belongs_to_active_hash :year
+- belongs_to_active_hash :month
+- belongs_to_active_hash :day
+
 
 
 ## items 
@@ -23,10 +32,11 @@
 | image     | text      | null: false                    |
 | item-name | string    | null: false                    |
 | info      | text      | null: false                    |
-| category  | string    | null: false                    |
-| status    | string    | null: false                    |
-| shipping  | string    | null: false                    |
-| prefecture| string    | null: false                    |
+| category  | integer   | null: false                    |
+| status    | integer   | null: false                    |
+| shipping  | integer   | null: false                    |
+| area      | integer   | null: false                    |
+| schedule  | integer   | null: false                    |
 | price     | integer   | null: false                    |
 | seller    | reference | null: false, foreign_key: true |
 
@@ -34,9 +44,12 @@
 
 - has_many :comments
 - belongs_to :seller
-- belongs_to :buyer
 - belongs_to :provision
-
+- belongs_to_active_hash :category
+- belongs_to_active_hash :status
+- belongs_to_active_hash :shipping
+- belongs_to_active_hash :area
+- belongs_to_active_hash :schedule
 
 ## commentsテーブル
 
@@ -51,28 +64,15 @@
 - belongs_to :user
 - belongs_to :item
 
-## cards (クレジットカード情報)テーブル
-
-| Column     | Type       | Options                        |
-| -------    | ---------- | ------------------------------ |
-| number     | integer    | null: false                    |
-| expiration | integer    | null: false                    |
-| cvc        | integer    | null: false                    |
-| buyer      | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :buyer
-
 ## provisions（配送先の情報） テーブル
 
 | Column     | Type       | Options                        |
 | -------    | ---------- | ------------------------------ |
 | postal     | integer    | null: false                    |
-| prefecture | string     | null: false                    |
+| prefecture | integer    | null: false                    |
 | city       | string     | null: false                    |
 | address    | integer    | null: false                    |
-| building   | string     | null: false                    |
+| building   | string     |                                |
 | phone      | integer    | null: false                    |
 | item       | references | null: false                    |
 | buyer      | references | null: false, foreign_key: true |
@@ -80,7 +80,7 @@
 ### Association
 
 - has_many :items
-- belongs_to :buyer
+- belongs_to_active_hash :prefecture
 
 ## sellersテーブル
 
@@ -92,21 +92,5 @@
 
 - has_many :items
 - belongs_to :user
-
-## buyersテーブル
-
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| item        | references | null: false                    |
-| user        | references | null: false,foreign_key: true  |
-| provision   | references | null: false                    |
-| card        | references | null: false                    |
-
-### Association
-
-- has_many :items
-- belongs_to :user
-- has_many :provisions
-- has_many :cards
 
 <!-- - has_many :rooms, through: room_users -->
