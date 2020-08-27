@@ -11,8 +11,8 @@
 
 ### Association
 
-- belongs_to :seller
-- belongs_to :buyer
+- has_one :seller
+- has_one :buyer
 - has_many :comments
 
 
