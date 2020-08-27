@@ -9,20 +9,13 @@
 | first-kanji | string  | null: false |
 | family-kana | string  | null: false |
 | first-kana  | string  | null: false |
-| year        | integer | null: false |
-| month       | integer | null: false |
-| day         | integer | null: false |
-
+| birthday    | date    | null: false |
 
 ### Association
 
 - has_one :seller
 - has_many :comments
 - has_many :items, through: seller
-- belongs_to_active_hash :year
-- belongs_to_active_hash :month
-- belongs_to_active_hash :day
-
 
 
 ## items 
@@ -68,12 +61,12 @@
 
 | Column     | Type       | Options                        |
 | -------    | ---------- | ------------------------------ |
-| postal     | integer    | null: false                    |
+| postal     | string     | null: false                    |
 | prefecture | integer    | null: false                    |
 | city       | string     | null: false                    |
-| address    | integer    | null: false                    |
+| address    | string     | null: false                    |
 | building   | string     |                                |
-| phone      | integer    | null: false                    |
+| phone      | string     | null: false                    |
 | item       | references | null: false                    |
 | buyer      | references | null: false, foreign_key: true |
 
@@ -86,11 +79,10 @@
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| item   | references | null: false                    |
+| item   | references | null: false,foreign_key: true  |
 | user   | references | null: false,foreign_key: true  |
 ### Association
 
-- has_many :items
+- belongs_to :item
 - belongs_to :user
 
-<!-- - has_many :rooms, through: room_users -->
