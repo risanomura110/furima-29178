@@ -15,7 +15,6 @@
 
 - has_one :seller
 - has_many :comments
-- has_many :items, through: seller
 
 
 ## items 
@@ -68,21 +67,25 @@
 | building   | string     |                                |
 | phone      | string     | null: false                    |
 | item       | references | null: false                    |
-| buyer      | references | null: false, foreign_key: true |
+| seller     | references | null: false,foreign_key: true  |
+
 
 ### Association
 
 - has_many :items
+- belongs_to :seller
 - belongs_to_active_hash :prefecture
 
 ## sellersテーブル
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| item   | references | null: false,foreign_key: true  |
-| user   | references | null: false,foreign_key: true  |
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| item        | references | null: false,foreign_key: true  |
+| user        | references | null: false,foreign_key: true  |
+| provision   | references | null: false,foreign_key: true  |
+
 ### Association
 
 - belongs_to :item
 - belongs_to :user
-
+- belongs_to :provision
