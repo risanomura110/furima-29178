@@ -15,7 +15,7 @@
 
 - has_many :orders
 - has_many :comments
-
+- has_many :items
 
 ## items 
 
@@ -30,12 +30,14 @@
 | area      | integer   | null: false                    |
 | schedule  | integer   | null: false                    |
 | price     | integer   | null: false                    |
+| user      | integer   | null: false, foreign_key: true |
+
 
 ### Association
 
 - has_many :comments
 - has_one :order
-- has_one :provision
+- belongs_to :user
 - belongs_to_active_hash :category
 - belongs_to_active_hash :status
 - belongs_to_active_hash :shipping
@@ -65,13 +67,11 @@
 | address    | string     | null: false                    |
 | building   | string     |                                |
 | phone      | string     | null: false                    |
-| item       | references | null: false,foreign_key: true  |
 | order      | references | null: false,foreign_key: true  |
 
 
 ### Association
 
-- belongs_to :item
 - belongs_to :order
 - belongs_to_active_hash :prefecture
 
@@ -85,4 +85,5 @@
 
 - belongs_to :user
 - belongs_to :item
+- has_one : provision
 
