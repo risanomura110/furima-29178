@@ -1,24 +1,89 @@
-# README
+## users テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column      | Type    | Options     |
+| ------------| ------  | ----------- |
+| nickname    | string  | null: false |
+| email       | string  | null: false |
+| password    | string  | null: false |
+| family-kanji| string  | null: false |
+| first-kanji | string  | null: false |
+| family-kana | string  | null: false |
+| first-kana  | string  | null: false |
+| birthday    | date    | null: false |
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+- has_many :orders
+- has_many :comments
+- has_many :items
 
-* System dependencies
+## items 
 
-* Configuration
+| Column    | Type      | Options                        |
+| ------    | ------    | ------------------------------ |
+| image     | text      | null: false                    |
+| item-name | string    | null: false                    |
+| info      | text      | null: false                    |
+| category  | integer   | null: false                    |
+| status    | integer   | null: false                    |
+| shipping  | integer   | null: false                    |
+| area      | integer   | null: false                    |
+| schedule  | integer   | null: false                    |
+| price     | integer   | null: false                    |
+| user      | integer   | null: false, foreign_key: true |
 
-* Database creation
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- has_many :comments
+- has_one :order
+- belongs_to :user
+- belongs_to_active_hash :category
+- belongs_to_active_hash :status
+- belongs_to_active_hash :shipping
+- belongs_to_active_hash :area
+- belongs_to_active_hash :schedule
 
-* Services (job queues, cache servers, search engines, etc.)
+## commentsテーブル
 
-* Deployment instructions
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| text   | string     | null: false                    |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :user
+- belongs_to :item
+
+## provisions（配送先の情報） テーブル
+
+| Column     | Type       | Options                        |
+| -------    | ---------- | ------------------------------ |
+| postal     | string     | null: false                    |
+| prefecture | integer    | null: false                    |
+| city       | string     | null: false                    |
+| address    | string     | null: false                    |
+| building   | string     |                                |
+| phone      | string     | null: false                    |
+| order      | references | null: false,foreign_key: true  |
+
+
+### Association
+
+- belongs_to :order
+- belongs_to_active_hash :prefecture
+
+## orders(購入履歴)テーブル
+
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| item        | references | null: false,foreign_key: true  |
+| user        | references | null: false,foreign_key: true  |
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one : provision
+
