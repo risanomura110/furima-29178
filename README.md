@@ -13,7 +13,7 @@
 
 ### Association
 
-- has_one :seller
+- has_many :orders
 - has_many :comments
 
 
@@ -30,13 +30,12 @@
 | area      | integer   | null: false                    |
 | schedule  | integer   | null: false                    |
 | price     | integer   | null: false                    |
-| seller    | reference | null: false, foreign_key: true |
 
 ### Association
 
 - has_many :comments
-- belongs_to :seller
-- belongs_to :provision
+- has_one :order
+- has_one :provision
 - belongs_to_active_hash :category
 - belongs_to_active_hash :status
 - belongs_to_active_hash :shipping
@@ -66,26 +65,24 @@
 | address    | string     | null: false                    |
 | building   | string     |                                |
 | phone      | string     | null: false                    |
-| item       | references | null: false                    |
-| seller     | references | null: false,foreign_key: true  |
+| item       | references | null: false,foreign_key: true  |
+| order      | references | null: false,foreign_key: true  |
 
 
 ### Association
 
-- has_many :items
-- belongs_to :seller
+- belongs_to :item
+- belongs_to :order
 - belongs_to_active_hash :prefecture
 
-## sellersテーブル
+## orders(購入履歴)テーブル
 
 | Column      | Type       | Options                        |
 | ----------- | ---------- | ------------------------------ |
 | item        | references | null: false,foreign_key: true  |
 | user        | references | null: false,foreign_key: true  |
-| provision   | references | null: false,foreign_key: true  |
-
 ### Association
 
-- belongs_to :item
 - belongs_to :user
-- belongs_to :provision
+- belongs_to :item
+
