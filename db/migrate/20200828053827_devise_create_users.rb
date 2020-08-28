@@ -3,9 +3,16 @@
 class DeviseCreateUsers < ActiveRecord::Migration[6.0]
   def change
     create_table :users do |t|
-      ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :nickname,           null: false,default: "フリマ太郎"
+      t.string :email,              null: false,default: "PC携帯どちらでも可"
+      t.string :password,           null: false,default: "6文字以上の半角英数字"
+      t.string :encrypted_password, null: false,default: "同じパスワードを入力"
+      t.string :family_kanji,       null: false,default: "例）山田"
+      t.string :first_name,         null: false,default: "例）太郎"
+      t.string :family_kana,        null: false,default: "例）ヤマダ"
+      t.string :first_kana,         null: false,default: "例）タロウ"
+      t.date   :birthday,           null: false,default: "--"
+
 
       ## Recoverable
       t.string   :reset_password_token
