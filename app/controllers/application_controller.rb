@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
 
     end
   end
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  private
+   def configure_permitted_parameters
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname,:family_kanji,:first_kanji,:family_kana,:first_kana,:birthday])
+  end
 end
