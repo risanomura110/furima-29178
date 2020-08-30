@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :nickname, :birthday, presence: true 
-  validates :email,  inclusion: { in: %w(@) }
+  # validates :email,  inclusion: { in: ["@"] }←デフォルトで"@"が含まれないと保存できない
   validates :password,
   format: { with:/\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
   validates :family_kanji, :first_kanji, presence: true 
