@@ -21,4 +21,8 @@ class ItemsController < ApplicationController
       redirect_to  '/users/sign_in'
     end
   end
+  def item_params
+    params.require(:item).permit(:image, :item_name, :info)
+  end
+
 end
