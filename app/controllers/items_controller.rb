@@ -1,11 +1,15 @@
 class ItemsController < ApplicationController
   before_action :move_to_signed_in, except: [:index]
   def index
-    # @items = Item.order("created_at DESC")
+    # トップページ生成
   end
   def new
+    # 出品するため商品の情報を登録する記入する画面生成
+    @item = Item.new
   end
   def create
+    #new画面で記入したデーターを保存する
+    Item.create(item_params)
   end
   def destroy
   end
@@ -23,7 +27,25 @@ class ItemsController < ApplicationController
     end
   end
   def item_params
-    params.require(:item).permit(:image, :item_name, :info)
+    params.require(:item).permit(
+      :image, 
+      :item_name,
+      :info,
+      :price,
+      :category_id,
+      :status_id, 
+      :shipping_id,
+      :area_id,
+      :schedule_id, )
+      .merge(user_id: current_user.id)
   end
-
 end
+
+# def create
+#   Comment.create(comment_params)
+# end
+
+# private
+# def comment_params
+#   params.require(:comment).permit(:text).merge(user_id: current_user.id, tweet_id: params[:tweet_id])
+# end

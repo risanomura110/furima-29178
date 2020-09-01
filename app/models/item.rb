@@ -10,6 +10,12 @@ class Item < ApplicationRecord
   belongs_to_active_hash :schedule
   #空の投稿を保存できないようにする
   validates :image, :item_name, :info, :category, :status, :shipping, :area, :schedule, :price, :user, presence: true
-  #ジャンルの選択が「--」の時は保存できないようにする
-  validates :category_id,:status_id, :shipping_id, :area_id, :schedule_id, numericality_id: { other_than: 1 } 
+  #ジャンルの選択が「--」の時は保存できないようにするem
+  with_options numericality: { other_than: 1, message: 'Select' } do
+    validates :category_id
+    validates :status_id
+    validates :shipping_id
+    validates :area_id
+    validates :schedule_id
+  end
 end
