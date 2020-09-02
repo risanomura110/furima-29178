@@ -9,8 +9,6 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :area_id,      null: false
       t.integer :schedule_id,  null: false
       t.integer :price,        null: false
-      t.integer :tax,          null: false
-      t.integer :profit,       null: false
       t.integer :user_id,      null: false
       t.timestamps
     end
