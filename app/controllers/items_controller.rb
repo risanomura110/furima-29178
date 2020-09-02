@@ -23,6 +23,25 @@ class ItemsController < ApplicationController
   end
   def show
   end
+
+
+  # def tax #値段を入力するとtaxアクションが動く？
+  #   #もし価格が記入されたら数字をprice*0.1=手数料
+  #   # item = Item.find(params[:id])
+  #  (item.price)*0.1=item.update(:tax) 
+  #   newitem = Item.find(params[:id])#書き換えた情報をnewitemに代入する
+  #   render json: { post: newitem } #json形式でchecked.jsに送信する
+  # end
+  # def profit #値段を入力するとprofitアクションが動く？
+  #   #もし価格が記入されたら数字をprice*0.9＝販売利益に反映させる
+  #  (item.price)*0.9=item.update(:profit)
+  #   newitem = Item.find(params[:id])#書き換えた情報をnewitemに代入する
+  #   render json: { post: newitem } #json形式でchecked.jsに送信する
+  # end
+
+
+
+
   private
   def move_to_signed_in
     unless user_signed_in?
