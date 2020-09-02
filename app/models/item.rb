@@ -2,6 +2,8 @@ class Item < ApplicationRecord
   has_many :comments
   has_one :order
   belongs_to :user
+  has_one_attached :image
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category
   belongs_to_active_hash :status
@@ -18,4 +20,8 @@ class Item < ApplicationRecord
     validates :area_id
     validates :schedule_id
   end
+  validates :price,
+            numericality: { only_integer: true,
+            greater_than: 300, less_than: 9999999
+              }
 end
