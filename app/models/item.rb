@@ -10,9 +10,9 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping
   belongs_to_active_hash :area
   belongs_to_active_hash :schedule
-  #空の投稿を保存できないようにする
+  # 空の投稿を保存できないようにする
   validates :image, :item_name, :info, :category, :status, :shipping, :area, :schedule, :price, :user, presence: true
-  #ジャンルの選択が「--」の時は保存できないようにする
+  # ジャンルの選択が「--」の時は保存できないようにする
   with_options numericality: { other_than: 1, message: 'Select' } do
     validates :category_id
     validates :status_id
@@ -22,6 +22,5 @@ class Item < ApplicationRecord
   end
   validates :price,
             numericality: { only_integer: true,
-            greater_than: 300, less_than: 9999999
-              }
+                            greater_than: 300, less_than: 9_999_999 }
 end
