@@ -20,5 +20,5 @@ class Item < ApplicationRecord
   end
   validates :price,
             numericality: { only_integer: true,
-                            greater_than: 300, less_than: 9_999_999 }
+                            greater_than: 299, less_than: 10000000 }
 end
