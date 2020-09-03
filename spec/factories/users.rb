@@ -11,8 +11,3 @@ FactoryBot.define do
     birthday              { '1924-06-03' }
   end
 end
-# Faker::Internet.free_email
-# Faker::Internet.password(min_length: 6)
-# nickname              {"abe"}
-# email                 {"kkk@gmail.com"}
-# password              {"00000000"}

@@ -1,14 +1,17 @@
-# require 'rails_helper'
-# describe Item do
-#   before do
-#     @item = FactoryBot.build(:item)
-#   end
+require 'rails_helper'
+describe Item do
+  before do
+    @item = FactoryBot.build(:item)
+  end
 
-#   describe '商品出品機能' do
-#     context '商品出品がうまくいく時' do
-#       it 'nickname,email、password,password_confirmation,family_kanji,first_kanji,family_kana,first_kana,birthday が存在すれば登録できる' do
-#         expect(@item).to be_valid
-#       end
+  describe '商品出品機能' do
+    context '商品出品がうまくいく時' do
+      it '要素全てが存在すれば登録できる' do
+        expect(@item).to be_valid
+      end
+    end
+  end
+end
 #       it 'emailに@が含まれていれば登録できる' do
 #         @item.email = 'abc123@gmail.com'
 #         expect(@item).to be_valid

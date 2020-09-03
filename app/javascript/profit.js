@@ -1,6 +1,7 @@
 window.addEventListener('load', function (){
   item_price.addEventListener('click', function() {
     const formData = new FormData(document.getElementById("item-price"));
+    // 
     const XHR = new XMLHttpRequest();
     XHR.open("GET", "/items/new", true);
     var ip = document.getElementById( "item-price" ).value;
