@@ -4,7 +4,7 @@
 // that code so it'll be compiled.
 
 require("@rails/ujs").start()
-require("turbolinks").start()
+// require("turbolinks").start()過去開いたページを記憶し,それをいち早く表示する
 require("@rails/activestorage").start()
 require("channels")
 require("../change")
