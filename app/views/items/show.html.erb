@@ -32,9 +32,18 @@
     <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
-    <% else  %>
+
+
+    <%# ログインしているがitem.idとcurrent.idが一致していない %>
+    <%elsif user_signed_in? && @item.user.id != current_user.id %>
     <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
+    
+    
+    <%# ログインしていないユーザーはログインページに遷移する %>
+    <% else  %>
+    <%= link_to '購入画面に進む', new_user_session_path ,class:"item-red-btn"%>
     <% end %>
+
 
     <%# //商品が売れていない場合はこちらを表示しましょう %>
 
@@ -42,7 +51,6 @@
 
 
 
-    <%# // ログインしているユーザと出品しているユーザが同一人物である時、商品の編集と削除を表示にしましょう %>
 
     <div class="item-explain-box">
       <span><%= @item.info %></span>
