@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_signed_in, except: [:index, :show]
-  before_action :item_find, except: [:index, :new, :create,]
+  before_action :item_find, except: [:index, :new, :create]
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy 
+    @item.destroy
     redirect_to action: 'index'
   end
 
