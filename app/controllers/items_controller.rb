@@ -19,8 +19,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
-    redirect_to action: 'index'
+    if @item.destroy
+      redirect_to action: 'index'
+    else
+      render :show
+   end
   end
 
   def edit
