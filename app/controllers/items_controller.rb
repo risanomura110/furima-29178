@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_signed_in, except: [:index]
+  before_action :move_to_signed_in, except: [:index, :show]
   before_action :item_find, except: [:index, :new, :create, :destroy]
   def index
     @items = Item.all.order('created_at DESC')
