@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_signed_in, except: [:index]
   def index
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -20,12 +21,17 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
+    item = Item.find(params[:id])
+    item.update(item_params)
   end
 
   def show
+    # 写真をクリックした先のページitem_pathで移動できる
+    @item = Item.find(params[:id])
   end
 
   private
