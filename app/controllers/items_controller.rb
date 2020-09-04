@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_signed_in, except: [:index]
+  before_action :item_find, except: [:index, :new, :create, :destroy]
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -21,23 +22,24 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    item = Item.find(params[:id])
     item.update(item_params)
   end
 
   def show
     # 写真をクリックした先のページitem_pathで移動できる
-    @item = Item.find(params[:id])
   end
 
   private
 
   def move_to_signed_in
     redirect_to '/users/sign_in' unless user_signed_in?
+  end
+
+  def item_find
+    @item = Item.find(params[:id])
   end
 
   def item_params
