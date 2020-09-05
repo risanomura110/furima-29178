@@ -6,6 +6,11 @@
       購入内容の確認
     </h1>
     <%# 購入内容の表示 %>
+
+
+    <%# <% @item. each  do |item| %> 
+
+
     <div class='buy-item-info'>
       <%= image_tag "item-sample.png", class: 'buy-item-img' %>
       <div class='buy-item-right-content'>
@@ -13,7 +18,7 @@
           <%= "商品説明" %>
         </h2>
         <div class='buy-item-price'>
-          <p class='item-price-text'>¥<%= 999,999,999 %></p>
+          <p class='item-price-text'>¥<%= "アイテムの値段" %></p>
           <p class='item-price-sub-text'>（税込）送料込み</p>
         </div>
       </div>
