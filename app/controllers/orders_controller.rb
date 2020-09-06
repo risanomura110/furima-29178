@@ -1,8 +1,7 @@
 class OrdersController < ApplicationController
   def index
-    #itemテーブルから指定された商品の名前と値段代入する
-    # @item = Item.find(params[:id])
-    # @order = Order.new(order_params)
+     @order = Order.new
+     @item = Item.find(params[:item_id])
   end
 
   def create

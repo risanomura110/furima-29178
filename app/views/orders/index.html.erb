@@ -1,4 +1,4 @@
-<%# <%= render "shared/second-header"%>
+ <%= render "shared/second-header"%>
 
 <div class='transaction-contents'>
   <div class='transaction-main'>
@@ -6,19 +6,14 @@
       購入内容の確認
     </h1>
     <%# 購入内容の表示 %>
-
-
-    <%# <% @item. each  do |item| %> 
-
-
-    <div class='buy-item-info'>
-      <%= image_tag "item-sample.png", class: 'buy-item-img' %>
+    <div class='buy-item-info'>    
+      <%= image_tag @item.image, class: 'buy-item-img'  if @item.image.attached? %>
       <div class='buy-item-right-content'>
         <h2 class='buy-item-text'>
-          <%= "商品説明" %>
+          <%= @item.item_name %>
         </h2>
         <div class='buy-item-price'>
-          <p class='item-price-text'>¥<%= "アイテムの値段" %></p>
+          <p class='item-price-text'>¥<%= @item.price %></p>
           <p class='item-price-sub-text'>（税込）送料込み</p>
         </div>
       </div>
@@ -31,7 +26,7 @@
         支払金額
       </h1>
       <p class='item-payment-price'>
-        ¥<%= "販売価格" %>
+        ¥<%= @item.price %>
       </p>
     </div>
     <%# /支払額の表示 %>
@@ -132,4 +127,4 @@
     <% end %>
   </div>
 </div>
-<%= render "shared/second-footer"%> %>
+<%= render "shared/second-footer"%> 
