@@ -57,14 +57,14 @@
 - belongs_to :user
 - belongs_to :item
 
-## provisions（配送先の情報） テーブル
+## address（配送先の情報） テーブル
 
 | Column     | Type       | Options                        |
 | -------    | ---------- | ------------------------------ |
 | postal     | string     | null: false                    |
 | prefecture | integer    | null: false                    |
 | city       | string     | null: false                    |
-| address    | string     | null: false                    |
+| add        | string     | null: false                    |
 | building   | string     |                                |
 | phone      | string     | null: false                    |
 | order      | references | null: false,foreign_key: true  |
@@ -85,5 +85,5 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one : provision
+- has_one : address
 
