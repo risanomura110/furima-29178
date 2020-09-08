@@ -15,15 +15,12 @@ class OrdersController < ApplicationController
       user_id: current_user.id,
       item_id: @item.id
     )
-    binding.pry
    if @orderadd.valid?
-     binding.pry
      pay_item
       @orderadd.save
      return redirect_to root_path
    else
      render 'index'
-     binding.pry
    end
 
   end
