@@ -5,16 +5,25 @@ class OrdersController < ApplicationController
   end
   def create
     @item = Item.find(params[:item_id])
-    @orderadd = OrderAddress.new(order_params)
-     binding.pry
-   if @orderadd.valid?
+    @orderadd = OrderAddress.new(
+      postal: order_params[:postal],
+      prefecture_id: order_params[:prefecture_id],
+      city: order_params[:city],
+      add: order_params[:add],
+      building: order_params[:building],
+      phone: order_params[:phone],
+      user_id: current_user.id,
+      item_id: @item.id
+    )
     binding.pry
+   if @orderadd.valid?
+     binding.pry
      pay_item
       @orderadd.save
      return redirect_to root_path
    else
      render 'index'
-    binding.pry
+     binding.pry
    end
 
   end
@@ -25,7 +34,6 @@ class OrdersController < ApplicationController
       user_id: current_user.id,
       item_id: @item.id )
   end
-  
   def pay_item
   # 支払情報を生成する
   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
