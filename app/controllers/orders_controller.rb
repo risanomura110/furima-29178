@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
       user_id: current_user.id,
       item_id: @item.id
     )
+    binding.pry
    if @orderadd.valid?
      pay_item
       @orderadd.save

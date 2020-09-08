@@ -30,12 +30,9 @@
       </p>
     </div>
     <%# /支払額の表示 %>
-    <%= form_with  url: item_orders_path(@item.id), method: :post, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
-   <%# 購入ボタンを押すとorders#create動く %>
-   
-   <%# エラーメッセージ %>
-   <%# <%= render 'error/error_messages', model: f.object   %>  
-
+    <%= form_with model: @orderadd,url: item_orders_path(@item.id), method: :post, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+   <%# 購入ボタンを押すとorders#create動く %>   
+       <%= render 'error/error_messages', model: f.object   %>    
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
