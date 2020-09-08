@@ -1,35 +1,38 @@
 class OrdersController < ApplicationController
   def index
      @item = Item.find(params[:item_id])
+     @orderadd = OrderAddress.new
   end
-
   def create
-  
     @item = Item.find(params[:item_id])
-    #@item.priceのデーターを持ってくるために定義する
-    @order = Order.new(price: @item.price)
-    # 値段を取得したかったら@order.price="1000"
-   if @order.valid?
+    @orderadd = OrderAddress.new(order_params)
+     binding.pry
+   if @orderadd.valid?
+    binding.pry
      pay_item
-     @order.save
+      @orderadd.save
      return redirect_to root_path
    else
      render 'index'
+    binding.pry
    end
+
   end
   private
   def order_params
-    params.require(:order).permit(:price, :token).merge(
+    params.permit(:token, :postal, :prefecture_id, 
+      :city, :add, :building,:phone).merge(
       user_id: current_user.id,
-      item_id: params[:item_id])
+      item_id: @item.id )
   end
-end
-def pay_item
-  # 支払機能を利用する
-  Payjp.api_key = "sk_test_31cc59f931886f079ce70fd8"
+  
+  def pay_item
+  # 支払情報を生成する
+  Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
   Payjp::Charge.create(
     amount: @item.price,
     card: order_params[:token],
     currency:'jpy'
   )
+  end
 end
