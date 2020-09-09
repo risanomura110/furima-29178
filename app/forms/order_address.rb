@@ -10,7 +10,7 @@ POSTAL_REGEX =  /\A[0-9]{3}-[0-9]{4}\z/.freeze
 validates :postal,
     format: { with: POSTAL_REGEX } 
 #電話番号にはハイフンは不要で、11桁以内であること  
-PHONE_REGEX =  /\A[0-11]+\z/.freeze
+PHONE_REGEX =  /\A[0-9]{,11}+\z/.freeze
 validates :phone,
 format: { with: PHONE_REGEX } 
 with_options numericality: { other_than: 1, message: 'Select' } do
