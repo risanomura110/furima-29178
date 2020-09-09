@@ -6,6 +6,7 @@ const pay = () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 //  jsでサーバーサイドに値を送る
+    const XHR = new XMLHttpRequest();
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
 // nameから
@@ -22,6 +23,10 @@ const pay = () => {
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} type="hidden" name='token'>`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
+      }
+      else{
+          alert(`Error ${XHR.status}: ${XHR.statusText}`);
+          return null;
       }
       document.getElementById("card-number").removeAttribute("name");
       document.getElementById("card-cvc").removeAttribute("name");
