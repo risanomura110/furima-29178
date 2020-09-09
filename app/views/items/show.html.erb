@@ -6,8 +6,8 @@
     <h2 class="name">
     <%= @item.item_name %>
     </h2>
-    
-     <div class='item-img-content'>
+
+    <div class='item-img-content'>
        <%= image_tag @item.image, class: "item-box-img" if @item.image.attached? %>
            <%# soldout %>
           <% if @item.order != nil %><%# もしitem(id=5).order(item_id=5)がなければsoloutを表示する %>
@@ -16,9 +16,8 @@
           </div>
           <% end %>
             <%# soldout %>
-      </div>
- 
-    </div>
+     </div>
+
     <div class="item-price-box">
       <span class="item-price">
           <span>¥<%= @item.price %></span>
@@ -115,6 +114,9 @@
       </button>
     </form>
   </div>
+
+
+
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
