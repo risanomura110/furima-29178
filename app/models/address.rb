@@ -9,7 +9,7 @@ class Address < ApplicationRecord
             :phone,
             :order,
             presence: true
-  with_options numericality: { other_than: 1, message: 'Select' } do
-    validates :prefecture_id
-  end
+  # with_options numericality: { other_than: 1, message: 'Select' } do
+  #   validates :prefecture_id
+  # end
 end

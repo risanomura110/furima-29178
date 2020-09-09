@@ -26,7 +26,6 @@ const pay = () => {
       }
       else{
           alert(`Error ${XHR.status}: ${XHR.statusText}`);
-          return null;
       }
       document.getElementById("card-number").removeAttribute("name");
       document.getElementById("card-cvc").removeAttribute("name");
