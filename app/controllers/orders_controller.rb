@@ -1,6 +1,11 @@
 class OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
+    if @item.order != nil 
+      # order.item_idがあったら(購入済)ならrootにリダイレクトする
+      redirect_to root_path 
+    end
+    root_move
     @orderadd = OrderAddress.new
   end
 
@@ -26,6 +31,13 @@ class OrdersController < ApplicationController
   end
 
   private
+
+def root_move
+  #出品者が購入ページに遷移するとトップページに遷移する
+  if @item.user.id == current_user.id
+    redirect_to root_path 
+  end
+end
 
   def order_params
     params.permit(:token, :postal, :prefecture_id,

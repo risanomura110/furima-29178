@@ -42,10 +42,10 @@ class ItemsController < ApplicationController
 
   private
 
+
   def move_to_signed_in
     redirect_to '/users/sign_in' unless user_signed_in?
   end
-
   def item_find
     @item = Item.find(params[:id])
   end
