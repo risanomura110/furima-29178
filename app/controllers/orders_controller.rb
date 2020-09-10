@@ -13,16 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @orderadd = OrderAddress.new(
-      postal: order_params[:postal],
-      prefecture_id: order_params[:prefecture_id],
-      city: order_params[:city],
-      add: order_params[:add],
-      building: order_params[:building],
-      phone: order_params[:phone],
-      user_id: current_user.id,
-      item_id: @item.id
-    )
+    @orderadd = OrderAddress.new(order_params)
     if @orderadd.valid?
       pay_item
       @orderadd.save
