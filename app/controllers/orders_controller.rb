@@ -3,6 +3,9 @@ class OrdersController < ApplicationController
   before_action :move_to_unsign
 
 
+  # heroku config:set PAYJP_SECRET_KEY="sk_test_31cc59f931886f079ce70fd8"
+  # heroku config:set PAYJP_PUBLIC_KEY="pk_test_3f766a0e726df49d8edb8bc7"
+pk_test_3f766a0e726df49d8edb8bc7
   def index
     unless @item.order.nil?
       # order.item_idがあったら(購入済)ならrootにリダイレクトする
