@@ -38,7 +38,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    # 写真をクリックした先のページitem_pathで移動できる
   end
 
   private

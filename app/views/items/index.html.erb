@@ -122,16 +122,27 @@
 
   <%# 商品一覧 %>
   <div class='item-contents'>
-    <h2 class='title'>ピックアップカテゴリー</h2>
-    <%= link_to '新規投稿商品', new_item_path, class: "subtitle" %>
-    <ul class='item-lists'>
-    <% @items.each do |item| %>
+       
 
+
+    <h2 class='title'>ピックアップカテゴリー</h2>
     
-      <li class='list'>
-      <%# itemの詳細情報ページに飛ぶitems#show %>
+    <%= link_to '新規投稿商品', new_item_path, class: "subtitle" %>
+  <ul class='item-lists'>
+
+<% @items.each do |item| %>
+  <li class='list'>   
     <%= link_to item_path(item.id) do%>
-       <%= image_tag item.image, class: "item-img" if item.image.attached? %>         
+      <div class='item-img-content'>
+       <%= image_tag item.image, class: "item-img" if item.image.attached? %>
+           <%# soldout %>
+          <% if item.order != nil %><%# もしitem(id=5).order(item_id=5)がなければsoloutを表示する %>
+          <div class='sold-out'>
+            <span>Sold Out!!</span>
+          </div>
+          <% end %>
+            <%# soldout %>
+      </div>
         <div class='item-info'>
           <h3 class='item-name'>
         <%= item.item_name %>
@@ -145,14 +156,13 @@
           </div>
         </div>
         <% end %>
-      </li>
-
-
-
+  </li>
       <% end %>
     </ul>
   </div>
 </div>
+
+
 <a href="/items/new">
 <div class='purchase-btn'>
   <span class='purchase-btn-text'>出品する</span>
