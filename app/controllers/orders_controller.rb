@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :item_find
+
   def index
-    @item = Item.find(params[:item_id])
     unless @item.order.nil?
       # order.item_idがあったら(購入済)ならrootにリダイレクトする
       redirect_to root_path
@@ -10,7 +11,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @orderadd = OrderAddress.new(
       postal: order_params[:postal],
       prefecture_id: order_params[:prefecture_id],
@@ -31,6 +31,9 @@ class OrdersController < ApplicationController
   end
 
   private
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
 
   def root_move
     # 出品者が購入ページに遷移するとトップページに遷移する
