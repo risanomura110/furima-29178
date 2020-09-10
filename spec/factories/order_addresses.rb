@@ -9,6 +9,7 @@ FactoryBot.define do
     order_id           { '4' }
     item_id            { '3' }
     user_id            { '3' }
+    token       {'aaaaaa'}
     association :user
     association :item
   end

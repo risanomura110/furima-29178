@@ -1,10 +1,10 @@
 class OrderAddress
   include ActiveModel::Model
   attr_accessor :item_id, :user_id, :postal, :prefecture_id,
-                :city, :add, :building, :phone, :order_id
+                :city, :add, :building, :phone, :order_id, :token
   # order,addressテーブルのカラム合計
   validates :item_id, :user_id, :postal, :prefecture_id,
-            :city, :add, :phone, presence: true
+            :city, :add, :phone, :token, presence: true
   # 郵便番号にはハイフンが必要であること
   POSTAL_REGEX = /\A[0-9]{3}-[0-9]{4}\z/.freeze
   validates :postal,
