@@ -1,0 +1,21 @@
+ja:
+ activerecord:
+   attributes:
+     user:
+       nickname: ニックネーム
+       birthday: 誕生日
+       family_kanji: 名字(全角)
+       first_kanji: 名前（全角）
+       family_kana: 名字カナ（全角）
+       first_kana: 名前カナ（全角）
+     item:
+       image: 出品画像
+       item_name: 商品名
+       info: 商品の説明
+       price: 販売価格
+       category_id: カテゴリー
+       status_id: 商品の状態
+       shipping_id: 配送料の負担
+       area_id: 発送元の地域 
+       schedule_id: 発送までの日数
+       # select: を選択してください
