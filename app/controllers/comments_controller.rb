@@ -1,7 +1,14 @@
 class CommentsController < ApplicationController
+  def new
+    @comments = Comment.all
+    @comment = Comment.new
+  end
+
   def create
-    comment = Comment.create(comment_params)
-    redirect_to "/items/#{comment.item.id}" # コメントと結びつくツイートの詳細画面に遷移する
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      ActionCable.server.broadcast 'message_channel', content: @comment
+    end
   end
 
   private
