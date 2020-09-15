@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :area
   belongs_to_active_hash :schedule
   validates :image, :item_name, :info, :category, :status, :shipping, :area, :schedule, :price, :user, presence: true
-  with_options numericality: { other_than: 1, message: 'Select' } do
+  with_options numericality: { other_than: 1, message: 'を選択してください' } do
     validates :category_id
     validates :status_id
     validates :shipping_id

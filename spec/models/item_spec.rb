@@ -29,27 +29,27 @@ describe Item do
       it 'カテゴリーの情報がないと保存できない' do
         @item.category_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Categoryを入力してください", "カテゴリーSelect")
+        expect(@item.errors.full_messages).to include("Categoryを入力してください", "カテゴリーを選択してください")
       end
       it '商品の状態についての情報がないと保存できない' do
         @item.status_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Statusを入力してください", "商品の状態Select")
+        expect(@item.errors.full_messages).to include("Statusを入力してください", "商品の状態を選択してください")
       end
       it '配送料の負担についての情報がないと保存できない' do
         @item.shipping_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shippingを入力してください", "配送料の負担Select")
+        expect(@item.errors.full_messages).to include("Shippingを入力してください", "配送料の負担を選択してください")
       end
       it '発送元の地域についての情報がないと保存できない' do
         @item.area_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Areaを入力してください", "発送元の地域Select")
+        expect(@item.errors.full_messages).to include("Areaを入力してください", "発送元の地域を選択してください")
       end
       it '発送までの日数についての情報がないと保存できない' do
         @item.schedule_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("Scheduleを入力してください", "発送までの日数Select")
+        expect(@item.errors.full_messages).to include("Scheduleを入力してください", "発送までの日数を選択してください")
       end
       it '価格についての情報がないと保存できない' do
         @item.price = nil
