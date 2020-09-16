@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
   before_action :item_find
   before_action :move_to_unsign
 
-
   def index
     unless @item.order.nil?
       # order.item_idがあったら(購入済)ならrootにリダイレクトする
@@ -36,9 +35,7 @@ class OrdersController < ApplicationController
 
   def move_to_unsign
     # ログインしていないユーザーが購入ページに遷移するとトップページに遷移する
-    unless user_signed_in?
-    redirect_to root_path 
-    end
+    redirect_to root_path unless user_signed_in?
   end
 
   def order_params

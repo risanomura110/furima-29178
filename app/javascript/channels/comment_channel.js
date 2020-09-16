@@ -20,6 +20,5 @@ consumer.subscriptions.create("CommentChannel", {
     // afterbegin: 要素内部の先頭に挿入（要素id=messages） 
     comments.insertAdjacentHTML('afterbegin', html);
     newComment.value = '';
-    // Called when there's incoming data on the websocket for this channel
   }
 });
