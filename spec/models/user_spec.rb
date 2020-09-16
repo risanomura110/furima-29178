@@ -43,12 +43,12 @@ describe User do
       it 'nicknameが空だと登録できない' do
         @user.nickname = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("ニックネームを入力してください")
+        expect(@user.errors.full_messages).to include('ニックネームを入力してください')
       end
       it 'emailが空では登録できない' do
         @user.email = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Eメールを入力してください")
+        expect(@user.errors.full_messages).to include('Eメールを入力してください')
       end
       it '重複したemailが存在する場合登録できない' do
         @user.save
@@ -65,140 +65,140 @@ describe User do
       it 'passwordが空では登録できない' do
         @user.password = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワードを入力してください", "パスワードは不正な値です", "パスワード（確認用）とパスワードの入力が一致しません")
+        expect(@user.errors.full_messages).to include('パスワードを入力してください', 'パスワードは不正な値です', 'パスワード（確認用）とパスワードの入力が一致しません')
       end
       it 'passwordは半角英字のみだと登録できない' do
         @user.password = 'aiueok'
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません", "パスワードは不正な値です")
+        expect(@user.errors.full_messages).to include('パスワード（確認用）とパスワードの入力が一致しません', 'パスワードは不正な値です')
       end
       it 'passwordは半角数字のみだと登録できない' do
         @user.password = '123456'
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません", "パスワードは不正な値です")
+        expect(@user.errors.full_messages).to include('パスワード（確認用）とパスワードの入力が一致しません', 'パスワードは不正な値です')
       end
       it 'passwordが5文字以下であれば登録できない' do
         @user.password = 'aaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません", "パスワードは6文字以上で入力してください", "パスワードは不正な値です")
+        expect(@user.errors.full_messages).to include('パスワード（確認用）とパスワードの入力が一致しません', 'パスワードは6文字以上で入力してください', 'パスワードは不正な値です')
       end
       it 'passwordが存在してもpassword_confirmationが空では登録できない' do
         @user.password_confirmation = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("パスワード（確認用）とパスワードの入力が一致しません")
+        expect(@user.errors.full_messages).to include('パスワード（確認用）とパスワードの入力が一致しません')
       end
       # /////＜ユーザー本名・漢字＞/////
 
       it '名前が存在しても名字が空では登録できない' do
         @user.family_kanji = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字(全角)を入力してください", "名字(全角)は不正な値です")
+        expect(@user.errors.full_messages).to include('名字(全角)を入力してください', '名字(全角)は不正な値です')
       end
       it '名字が存在しても名前が空では登録できない' do
         @user.first_kanji = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("名前（全角）を入力してください", "名前（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名前（全角）を入力してください', '名前（全角）は不正な値です')
       end
       it 'ユーザー本名は半角英字だと登録できない' do
         @user.family_kanji = 'sss'
         @user.first_kanji = 'sss'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字(全角)は不正な値です", "名前（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字(全角)は不正な値です', '名前（全角）は不正な値です')
       end
       it 'ユーザー本名は半角数字だと登録できない' do
         @user.family_kanji = '111'
         @user.first_kanji = '111'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字(全角)は不正な値です", "名前（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字(全角)は不正な値です', '名前（全角）は不正な値です')
       end
       it 'ユーザー本名は半角記号だと登録できない' do
         @user.family_kanji = '???'
         @user.first_kanji = '???'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字(全角)は不正な値です", "名前（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字(全角)は不正な値です', '名前（全角）は不正な値です')
       end
       it 'ユーザー本名は全角英字だと登録できない' do
         @user.family_kanji = 'ａ'
         @user.first_kanji = 'ａ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字(全角)は不正な値です", "名前（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字(全角)は不正な値です', '名前（全角）は不正な値です')
       end
       it 'ユーザー本名は全角数字だと登録できない' do
         @user.family_kanji = '１'
         @user.first_kanji = '１'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字(全角)は不正な値です", "名前（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字(全角)は不正な値です', '名前（全角）は不正な値です')
       end
       it 'ユーザー本名は全角記号だと登録できない' do
         @user.family_kanji = '・・・'
         @user.first_kanji = '・・・'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字(全角)は不正な値です", "名前（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字(全角)は不正な値です', '名前（全角）は不正な値です')
       end
       # /////＜ユーザー本名・カタカナ＞/////
       it '名前(カタカナ)が存在しても名字（カタカナ）が空では登録できない' do
         @user.family_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字カナ（全角）を入力してください", "名字カナ（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字カナ（全角）を入力してください', '名字カナ（全角）は不正な値です')
       end
       it '名字（カタカナ）が存在しても名前（カタカナ）が空では登録できない' do
         @user.first_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("名前カナ（全角）を入力してください", "名前カナ（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名前カナ（全角）を入力してください', '名前カナ（全角）は不正な値です')
       end
       it 'ユーザー本名のフリガナは漢字だと登録できない' do
         @user.family_kana = '山田'
         @user.first_kana = '太郎'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字カナ（全角）は不正な値です", "名前カナ（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字カナ（全角）は不正な値です', '名前カナ（全角）は不正な値です')
       end
       it 'ユーザー本名のフリガナは平仮名だと登録できない' do
         @user.family_kana = 'やまだ'
         @user.first_kana = 'たろう'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字カナ（全角）は不正な値です", "名前カナ（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字カナ（全角）は不正な値です', '名前カナ（全角）は不正な値です')
       end
       it 'ユーザー本名のフリガナは半角数字だと登録できない' do
         @user.family_kana = '123'
         @user.first_kana = '123'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字カナ（全角）は不正な値です", "名前カナ（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字カナ（全角）は不正な値です', '名前カナ（全角）は不正な値です')
       end
       it 'ユーザー本名のフリガナは全角数字だと登録できない' do
         @user.family_kana = '１１１'
         @user.first_kana = '１１１'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字カナ（全角）は不正な値です", "名前カナ（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字カナ（全角）は不正な値です', '名前カナ（全角）は不正な値です')
       end
       it 'ユーザー本名のフリガナは半角記号だと登録できない' do
         @user.family_kana = '???'
         @user.first_kana = '???'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字カナ（全角）は不正な値です", "名前カナ（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字カナ（全角）は不正な値です', '名前カナ（全角）は不正な値です')
       end
       it 'ユーザー本名のフリガナは全角記号だと登録できない' do
         @user.family_kana = '・・・'
         @user.first_kana = '・・・'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字カナ（全角）は不正な値です", "名前カナ（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字カナ（全角）は不正な値です', '名前カナ（全角）は不正な値です')
       end
       it 'ユーザー本名のフリガナは半角英字だと登録できない' do
         @user.family_kana = 'yamada'
         @user.first_kana = 'tarou'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字カナ（全角）は不正な値です", "名前カナ（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字カナ（全角）は不正な値です', '名前カナ（全角）は不正な値です')
       end
       it 'ユーザー本名のフリガナは全角英字だと登録できない' do
         @user.family_kana = 'ｙａｍａｄａ'
         @user.first_kana = 'ｔａｒｏｕ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("名字カナ（全角）は不正な値です", "名前カナ（全角）は不正な値です")
+        expect(@user.errors.full_messages).to include('名字カナ（全角）は不正な値です', '名前カナ（全角）は不正な値です')
       end
       # /////生年月日/////
       it '生年月日が空では登録できない' do
         @user.birthday = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("誕生日を入力してください")
+        expect(@user.errors.full_messages).to include('誕生日を入力してください')
       end
     end
   end
