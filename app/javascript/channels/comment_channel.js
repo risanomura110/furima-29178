@@ -9,8 +9,11 @@ consumer.subscriptions.create("CommentChannel", {
     // Called when the subscription has been terminated by the server
   },
 
+
   received(data) {
-    const html = `<p>${data.content.text}</p>`;
+    console.log(data)
+    // nickname: @comment.user.nickname,content: @comment
+    const html = `<p>${data.nickname}:${data.content.text}</p>`;
     // html="入力した文字"
     const messages = document.getElementById('messages');
     const newMessage = document.getElementById('message_text');
