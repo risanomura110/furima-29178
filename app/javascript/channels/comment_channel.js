@@ -15,11 +15,11 @@ consumer.subscriptions.create("CommentChannel", {
     // nickname: @comment.user.nickname,content: @comment
     const html = `<p>${data.nickname}:${data.content.text}</p>`;
     // html="入力した文字"
-    const messages = document.getElementById('messages');
-    const newMessage = document.getElementById('message_text');
+    const comments = document.getElementById('comments');
+    const newComment = document.getElementById('comment_text');
     // afterbegin: 要素内部の先頭に挿入（要素id=messages） 
-    messages.insertAdjacentHTML('afterbegin', html);
-    newMessage.value='';
+    comments.insertAdjacentHTML('afterbegin', html);
+    newComment.value = '';
     // Called when there's incoming data on the websocket for this channel
   }
 });

@@ -126,14 +126,12 @@
     <%# コメント表示欄 %>
 
 
-<div class="comments"> 
-<div id='messages'>
+<div id="comments"> 
  <% if @comments  %>
   <% @comments.reverse_each do |comment| %>
     <p><%= comment.user.nickname %>:<%= comment.text %></p> 
   <% end %> 
    <% end %> 
-</div>
 </div>
 
 
