@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :move_to_signed_in, except: [:index, :show]
-  before_action :item_find, except: [:index, :new, :create]
+  before_action :move_to_signed_in, except: [:index, :show, :search]
+  before_action :item_find, except: [:index, :new, :create, :search]
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -40,6 +40,10 @@ class ItemsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @item.comments.includes(:user)
+  end
+
+  def search
+    @items = Item.search(params[:keyword])
   end
 
   private
